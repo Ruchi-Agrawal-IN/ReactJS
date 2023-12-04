@@ -17,7 +17,7 @@ const useGames = () =>{
     useEffect(() => {
         const abortController = new AbortController();
       apiClient
-        .get<FetchGamesResponse>("./games", {signal: abortController.signal})
+        .get<FetchGamesResponse>("./movie", {signal: abortController.signal})
         .then((res) => setGames(res.data.results))
         .catch((err) => {
             if(err instanceof CanceledError)return;
