@@ -9,15 +9,15 @@ interface FetchResponse<T>{
  const useData  = <T>(endPoint: string) =>{
     const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState("");
-    const[isLoading, setLoading] =  useState<boolean>(false);
+    //const[isLoading, setLoading] =  useState<boolean>(false);
     useEffect(() => {
         const abortController = new AbortController();
-        setLoading(true);
+        // setLoading(true);
       apiClient
         .get<FetchResponse<T>>(endPoint, {signal: abortController.signal})
         .then((res) => {
           setData(res.data.results);
-          isLoading(false);
+        //   isLoading(false);
         })
         .catch((err) => {
            if(err instanceof CanceledError){
@@ -25,11 +25,13 @@ interface FetchResponse<T>{
            }else{
             setError(err.message)
            }
-           isLoading(false);
+        //    isLoading(false);
         });
         return ()=> abortController.abort();
     }, []);
-    return{data, error, isLoading};
+    return{data, error};
+
+    //return{data, error, isLoading};
     
 }
 export default useData;
