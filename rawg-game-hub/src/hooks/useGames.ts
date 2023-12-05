@@ -32,7 +32,7 @@ const useGames = () =>{
             setError(err.message)
            }
         });
-        return abortController.abort();
+        return ()=> abortController.abort();
     }, []);
     return{games, error};
 }
