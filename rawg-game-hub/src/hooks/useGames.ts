@@ -21,7 +21,7 @@ export interface Game {
 const useGames = () =>{
     const [games, setGames] = useState<Game[]>([]);
     const [error, setError] = useState("");
-    const[isLoading, setLoading] =  useState<Boolean>(false);
+    const[isLoading, setLoading] =  useState<boolean>(false);
     useEffect(() => {
         const abortController = new AbortController();
         setLoading(true);
