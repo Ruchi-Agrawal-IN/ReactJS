@@ -28,7 +28,7 @@ interface FetchResponse<T>{
         //    isLoading(false);
         });
         return ()=> abortController.abort();
-    }, []);
+    }, [endPoint]);
     return{data, error};
 
     //return{data, error, isLoading};
