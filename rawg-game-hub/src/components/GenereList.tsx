@@ -1,8 +1,10 @@
-import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
+import { Image, List, ListItem, HStack, Text, Spinner } from "@chakra-ui/react";
 import useGeneres from "../hooks/useGenres";
 import getCroppedImageurl from "../services/image-url";
 const GenereList = () => {
-  const { data } = useGeneres();
+  const { data, error, isLoading } = useGeneres();
+  if (error) return null;
+  if (isLoading) return <Spinner />;
   return (
     <List>
       {data.map((d) => (
@@ -11,7 +13,8 @@ const GenereList = () => {
             <Image
               boxSize="32px"
               borderRadius={8}
-              src={getCroppedImageurl(d.image_background)}
+              // As cropping images to any dimentions is not supported so taking width n height a standard size
+              src={getCroppedImageurl(d.image_background, 400, 600)}
             ></Image>
             <Text fontSize="lg">{d.name}</Text>
           </HStack>
