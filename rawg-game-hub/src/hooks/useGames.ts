@@ -19,7 +19,8 @@ const useGames = (gameQury: GameQuery) =>
 useData<Game>('/games', 
 {params: {
   genre: gameQury.genre?.id, 
-  platforms:gameQury.platform?.id
+  platforms:gameQury.platform?.id,
+  ordering: gameQury.sortOrder
 }},
 [gameQury]);
 
